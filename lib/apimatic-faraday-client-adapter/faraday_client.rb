@@ -7,7 +7,7 @@ require 'faraday/net_http_persistent'
 
 module CoreLibrary
   # An implementation of HttpClient.
-  class FaradayClient < CoreLibrary.HttpClient
+  class FaradayClient < CoreLibrary::HttpClient
     # The attribute readers for properties.
     attr_reader :connection, :response_factory
 
