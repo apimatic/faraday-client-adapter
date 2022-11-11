@@ -14,7 +14,7 @@ module CoreLibrary
     # The constructor.
     # @param [ClientConfiguration] client_configuration The configurations for the Faraday client.
     def initialize(client_configuration)
-      @response_factory = response_factory
+      @response_factory = client_configuration.response_factory
       @connection = if client_configuration.connection.nil?
                       create_connection(client_configuration)
                     else
