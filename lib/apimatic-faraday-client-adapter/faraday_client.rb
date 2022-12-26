@@ -33,7 +33,9 @@ module CoreLibrary
         faraday.request :url_encoded
         faraday.ssl[:ca_file] = Certifi.where
         faraday.ssl[:verify] = client_configuration.verify
-        faraday.request :retry, max: client_configuration.max_retries, interval: client_configuration.retry_interval,
+        faraday.request :retry,
+                        max: client_configuration.max_retries,
+                        interval: client_configuration.retry_interval,
                         backoff_factor: client_configuration.backoff_factor,
                         retry_statuses: client_configuration.retry_statuses,
                         methods: client_configuration.retry_methods,
@@ -56,8 +58,7 @@ module CoreLibrary
         request.headers = http_request.headers.map { |k, v| [k.to_s, v.to_s] }
         request.options.context ||= {}
         request.options.context.merge!(http_request.context)
-        unless http_request.http_method == HttpMethod::GET &&
-          http_request.parameters.empty?
+        unless http_request.http_method == HttpMethod::GET && http_request.parameters.empty?
           request.body = http_request.parameters
         end
       end
@@ -69,7 +70,7 @@ module CoreLibrary
     # @param [HttpRequest] http_request The HttpRequest which was executed.
     def convert_response(response, http_request)
       @response_factory.create(response.status, response.reason_phrase,
-                       response.headers, response.body, http_request)
+                               response.headers, response.body, http_request)
     end
   end
 end
