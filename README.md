@@ -40,7 +40,7 @@ gem 'apimatic_faraday_client_adapter'
 
 ## Links
 
-[//]: # (* [apimatic-core-interfaces]&#40;https://pypi.org/project/apimatic-core-interfaces/&#41;)
+* [apimatic_core_interfaces](https://rubygems.org/gems/apimatic_core_interfaces)
 * [Faraday](https://rubygems.org/gems/faraday)
 
 [test-badge]: https://github.com/apimatic/faraday-client-adapter/actions/workflows/test-runner.yml/badge.svg
