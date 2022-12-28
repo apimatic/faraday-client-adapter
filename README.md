@@ -1,5 +1,6 @@
 # apimatic-faraday-client-adapter
 
+[![Gem Version](https://badge.fury.io/rb/apimatic_faraday_client_adapter.svg)](https://badge.fury.io/rb/apimatic_faraday_client_adapter)
 [![Tests][test-badge]][test-url]
 [![Linting][lint-badge]][lint-url]
 [![Maintainability][maintainability-url]][code-climate-url]
