@@ -1,6 +1,5 @@
 # apimatic-faraday-client-adapter
 
-[//]: # ([![PyPI][rubygems-version]][rubygems-apimatic-faraday-client-adapter-url])
 [![Tests][test-badge]][test-url]
 [![Linting][lint-badge]][lint-url]
 [![Maintainability][maintainability-url]][code-climate-url]
@@ -43,8 +42,6 @@ gem 'apimatic_faraday_client_adapter'
 [//]: # (* [apimatic-core-interfaces]&#40;https://pypi.org/project/apimatic-core-interfaces/&#41;)
 * [Faraday](https://rubygems.org/gems/faraday)
 
-[rubygems-version]: https://img.shields.io/pypi/v/apimatic-requests-client-adapter
-[rubygems-apimatic-faraday-client-adapter-url]: https://pypi.org/project/apimatic-requests-client-adapter/
 [test-badge]: https://github.com/apimatic/faraday-client-adapter/actions/workflows/test-runner.yml/badge.svg
 [test-url]: https://github.com/apimatic/faraday-client-adapter/actions/workflows/test-runner.yml
 [lint-badge]: https://github.com/apimatic/faraday-client-adapter/actions/workflows/lint-runner.yml/badge.svg
