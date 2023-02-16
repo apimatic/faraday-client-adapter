@@ -50,5 +50,5 @@ gem 'apimatic_faraday_client_adapter'
 [code-climate-url]: https://codeclimate.com/github/apimatic/faraday-client-adapter
 [maintainability-url]: https://api.codeclimate.com/v1/badges/59badaadebeb3478eb48/maintainability
 [test-coverage-url]: https://api.codeclimate.com/v1/badges/59badaadebeb3478eb48/test_coverage
-[license-badge]: https://img.shields.io/badge/licence-APIMATIC-blue
+[license-badge]: https://img.shields.io/badge/licence-MIT-blue
 [license-url]: LICENSE
