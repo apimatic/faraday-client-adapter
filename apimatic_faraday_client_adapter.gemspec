@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.authors = ['APIMatic Ltd.']
   s.email = 'support@apimatic.io'
   s.homepage = 'https://apimatic.io'
-  s.license = 'APIMATIC REFERENCE SOURCE LICENSE'
+  s.license = 'MIT'
   s.add_dependency('apimatic_core_interfaces', '~> 0.1.0')
   s.add_dependency('faraday', '~> 2.0', '>= 2.0.1')
   s.add_dependency('faraday-follow_redirects', '~> 0.2')
