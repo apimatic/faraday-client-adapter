@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'apimatic_faraday_client_adapter'
-  s.version = '0.1.2'
+  s.version = '0.1.3'
   s.summary = 'An adapter for faraday client library consumed by the SDKs generated with APIMatic.'
   s.description = 'Faraday is a simple, yet elegant, HTTP library. This repository contains the client '\
                   'implementation that uses the requests library for python SDK provided by APIMatic.'
@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.email = 'support@apimatic.io'
   s.homepage = 'https://apimatic.io'
   s.license = 'MIT'
-  s.add_dependency('apimatic_core_interfaces', '~> 0.1.0')
+  s.add_dependency('apimatic_core_interfaces', '~> 0.2.0')
   s.add_dependency('faraday', '~> 2.0', '>= 2.0.1')
   s.add_dependency('faraday-follow_redirects', '~> 0.2')
   s.add_dependency('faraday-multipart', '~> 1.0')
