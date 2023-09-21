@@ -58,9 +58,7 @@ module CoreLibrary
         request.headers = http_request.headers.map { |k, v| [k.to_s, v.to_s] }
         request.options.context ||= {}
         request.options.context.merge!(http_request.context)
-        unless http_request.http_method == HttpMethod::GET && http_request.parameters.empty?
-          request.body = http_request.parameters
-        end
+        request.body = http_request.parameters
       end
       convert_response(response, http_request)
     end
