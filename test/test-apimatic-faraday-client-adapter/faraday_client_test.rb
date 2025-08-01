@@ -1,7 +1,8 @@
 require 'minitest/autorun'
 require 'apimatic_faraday_client_adapter'
 require_relative '../test-helper/mock_helper'
-require_relative '../test-helper/local_server'
+require_relative '../test-helper/servers/local_server'
+require_relative '../test-helper/servers/proxy_server'
 require 'ostruct'
 
 class FaradayClientTest < Minitest::Test
@@ -14,13 +15,11 @@ class FaradayClientTest < Minitest::Test
                                                                                           verify: false
 
     @custom_connection = MockHelper.create_mock_connection
-    @client_configuration_with_custom_setting = MockHelper
-                                                  .create_client_configuration connection: @custom_connection,
-                                                                               cache: true, verify: false
+    @client_configuration_with_custom_setting = MockHelper.create_client_configuration connection: @custom_connection,
+                                                                                       cache: true, verify: false
   end
 
   def teardown
-    # Do nothing
   end
 
   def test_create_connection
@@ -118,6 +117,9 @@ class FaradayClientTest < Minitest::Test
   end
 
   def test_execute_get_through_proxy
+    @proxy_server = ProxyServer.new(port: 8881)
+    @proxy_server.start
+
     LocalServer.start(8081)
 
     proxy_settings = OpenStruct.new(to_hash: { uri: 'http://localhost:8881' })
@@ -138,9 +140,13 @@ class FaradayClientTest < Minitest::Test
 
     assert_equal 200, response.status_code
     assert_equal 'Get response body.', response.raw_body
+    @proxy_server.stop
   end
 
   def test_execute_get_through_proxy_with_auth
+    auth_proxy_server = ProxyServer.new(port: 8882, auth: 'user:pass')
+    auth_proxy_server.start
+
     LocalServer.start(8082)
 
     proxy_settings = OpenStruct.new(to_hash: { uri: 'http://localhost:8882', user: 'user', password: 'pass' })
@@ -161,5 +167,6 @@ class FaradayClientTest < Minitest::Test
 
     assert_equal 200, response.status_code
     assert_equal 'Get response body.', response.raw_body
+    auth_proxy_server.stop
   end
 end
