@@ -32,8 +32,20 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+    - name: Install mitmproxy
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y mitmproxy
+    - name: Start mitmproxy in background
+      run: |
+        nohup mitmproxy --mode regular --listen-port 8881 > mitmproxy.log 2>&1 &
+    - name: Start mitmproxy with auth in background
+      run: |
+        nohup mitmproxy --listen-port 8882 --proxyauth user:pass > mitmproxy.log 2>&1 &
     - name: Run tests
       run: bundle exec rake
+    - name: Print mitmproxy log (for debugging)
+      run: cat mitmproxy.log
     - name: SonarQube Scan
       if: ${{ matrix.ruby-version == '3.2' && github.actor != 'dependabot[bot]' }}
       uses: SonarSource/sonarqube-scan-action@v5.2.0
