@@ -45,6 +45,7 @@ module CoreLibrary
         faraday.adapter client_configuration.adapter
         faraday.options[:params_encoder] = Faraday::FlatParamsEncoder
         faraday.options[:timeout] = client_configuration.timeout if client_configuration.timeout.positive?
+        faraday.proxy = client_configuration.proxy_settings.to_hash
       end
     end
 
