@@ -2,7 +2,7 @@
 require 'webrick'
 
 module LocalServer
-  def self.start(port = 8081)
+  def self.start(port)
     server = WEBrick::HTTPServer.new(
       Port: port,
       AccessLog: [],
@@ -10,6 +10,7 @@ module LocalServer
     )
 
     server.mount_proc '/get' do |_, res|
+      puts "***** Request received by proxy server to the local server listening on #{port}! *****"
       res.status = 200
       res['Content-Type'] = 'text/plain'
       res.body = 'Get response body.'

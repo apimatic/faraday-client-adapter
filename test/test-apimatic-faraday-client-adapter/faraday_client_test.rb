@@ -141,7 +141,7 @@ class FaradayClientTest < Minitest::Test
   end
 
   def test_execute_get_through_proxy_with_auth
-    LocalServer.start(8081)
+    LocalServer.start(8082)
 
     proxy_settings = OpenStruct.new(to_hash: { uri: 'http://localhost:8882', user: 'user', password: 'pass' })
 
@@ -152,7 +152,7 @@ class FaradayClientTest < Minitest::Test
 
     request_mock = MockHelper.create_request(
       http_method: HttpMethod::GET,
-      query_url: 'http://localhost:8081/get',
+      query_url: 'http://localhost:8082/get',
       headers: { 'accept' => 'text/plain' }
     )
 
