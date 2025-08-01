@@ -3,8 +3,9 @@
 [![Gem Version](https://badge.fury.io/rb/apimatic_faraday_client_adapter.svg)](https://badge.fury.io/rb/apimatic_faraday_client_adapter)
 [![Tests][test-badge]][test-url]
 [![Linting][lint-badge]][lint-url]
-[![Maintainability][maintainability-url]][code-climate-url]
-[![Test Coverage][test-coverage-url]][code-climate-url]
+[![Test Coverage][coverage-badge]][coverage-url]
+[![Maintainability Rating][maintainability-badge]][maintainability-url]
+[![Vulnerabilities][vulnerabilities-badge]][vulnerabilities-url]
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
 [![Licence][license-badge]][license-url]
 
@@ -47,8 +48,11 @@ gem 'apimatic_faraday_client_adapter'
 [test-url]: https://github.com/apimatic/faraday-client-adapter/actions/workflows/test-runner.yml
 [lint-badge]: https://github.com/apimatic/faraday-client-adapter/actions/workflows/lint-runner.yml/badge.svg
 [lint-url]: https://github.com/apimatic/faraday-client-adapter/actions/workflows/lint-runner.yml
-[code-climate-url]: https://codeclimate.com/github/apimatic/faraday-client-adapter
-[maintainability-url]: https://api.codeclimate.com/v1/badges/59badaadebeb3478eb48/maintainability
-[test-coverage-url]: https://api.codeclimate.com/v1/badges/59badaadebeb3478eb48/test_coverage
+[coverage-badge]: https://sonarcloud.io/api/project_badges/measure?project=apimatic_faraday-client-adapter&metric=coverage
+[coverage-url]: https://sonarcloud.io/summary/new_code?id=apimatic_faraday-client-adapter
+[maintainability-badge]: https://sonarcloud.io/api/project_badges/measure?project=apimatic_faraday-client-adapter&metric=sqale_rating
+[maintainability-url]: https://sonarcloud.io/summary/new_code?id=apimatic_faraday-client-adapter
+[vulnerabilities-badge]: https://sonarcloud.io/api/project_badges/measure?project=apimatic_faraday-client-adapter&metric=vulnerabilities
+[vulnerabilities-url]: https://sonarcloud.io/summary/new_code?id=apimatic_faraday-client-adapter
 [license-badge]: https://img.shields.io/badge/licence-MIT-blue
 [license-url]: LICENSE
