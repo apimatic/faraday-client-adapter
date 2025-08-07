@@ -13,7 +13,7 @@
 This repository contains the client implementation that uses the faraday client library for the ruby SDKs provided by APIMatic.
 
 ## Version supported
-Currently APIMatic supports  `2.6 <= Ruby version <= 3.2`  hence faraday-client-adapter will need the same versions to be supported.
+Currently APIMatic supports  `2.6 <= Ruby version <= 3.3`  hence faraday-client-adapter will need the same versions to be supported.
 
 ## Installation
 Installation is quite simple, just execute the following command:
