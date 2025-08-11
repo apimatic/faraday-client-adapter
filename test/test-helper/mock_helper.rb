@@ -53,5 +53,11 @@ module TestComponent
         end
       end
     end
+
+    ProxySettingsStruct = Struct.new(:uri, :user, :password) do
+      def to_h
+        { uri: uri, user: user, password: password }
+      end
+    end
   end
 end

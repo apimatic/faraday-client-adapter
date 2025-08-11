@@ -122,7 +122,7 @@ class FaradayClientTest < Minitest::Test
 
     LocalServer.start(8081)
 
-    proxy_settings = OpenStruct.new(to_h: { uri: 'http://localhost:8881' })
+    proxy_settings = MockHelper::ProxySettingsStruct.new('http://localhost:8881')
 
     config = MockHelper.create_client_configuration(
       proxy_settings: proxy_settings,
@@ -149,7 +149,7 @@ class FaradayClientTest < Minitest::Test
 
     LocalServer.start(8082)
 
-    proxy_settings = OpenStruct.new(to_h: { uri: 'http://localhost:8882', user: 'user', password: 'pass' })
+    proxy_settings = MockHelper::ProxySettingsStruct.new('http://localhost:8882', 'user', 'pass')
 
     config = MockHelper.create_client_configuration(
       proxy_settings: proxy_settings,
