@@ -7,8 +7,9 @@ module TestComponent
   class MockHelper
     include CoreLibrary
 
-    def self.create_client_configuration(connection: nil, timeout: 60, cache: false, verify: true)
-      HttpClientConfigurationMock.new connection:connection, timeout: timeout, cache:cache, verify: verify
+    def self.create_client_configuration(connection: nil, timeout: 60, cache: false, verify: true, proxy_settings: nil)
+      HttpClientConfigurationMock.new connection:connection, timeout: timeout, cache:cache,
+                                      verify: verify, proxy_settings: proxy_settings
     end
 
     def self.create_response(status_code: nil, reason_phrase: nil, headers: nil, raw_body: nil, request: nil)
@@ -50,6 +51,12 @@ module TestComponent
             raise Faraday::ConnectionFailed
           end
         end
+      end
+    end
+
+    ProxySettingsStruct = Struct.new(:uri, :user, :password) do
+      def to_h
+        { uri: uri, user: user, password: password }
       end
     end
   end

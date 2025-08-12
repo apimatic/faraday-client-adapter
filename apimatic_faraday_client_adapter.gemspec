@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'apimatic_faraday_client_adapter'
-  s.version = '0.1.5'
+  s.version = '0.1.6'
   s.summary = 'An adapter for faraday client library consumed by the SDKs generated with APIMatic.'
   s.description = 'Faraday is a simple, yet elegant, HTTP library. This repository contains the client '\
                   'implementation that uses the requests library for python SDK provided by APIMatic.'
@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency('minitest', '~> 5.14', '>= 5.14.1')
   s.add_development_dependency('minitest-proveit', '~> 1.0')
   s.add_development_dependency('simplecov', '~> 0.21.2')
+  s.add_development_dependency('webrick', '~> 1.3', '>= 1.3.1')
   s.required_ruby_version = ['>= 2.6']
   s.files = Dir['{lib, test}/**/*', 'README*', 'LICENSE*']
   s.require_paths = ['lib']
