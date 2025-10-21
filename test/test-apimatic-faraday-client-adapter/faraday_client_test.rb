@@ -1,9 +1,12 @@
 require 'minitest/autorun'
 require 'apimatic_faraday_client_adapter'
 require_relative '../test-helper/mock_helper'
+require_relative '../test-helper/servers/local_server'
+require_relative '../test-helper/servers/proxy_server'
+require 'ostruct'
 
 class FaradayClientTest < Minitest::Test
-  include CoreLibrary, TestComponent
+  include CoreLibrary, TestComponent, LocalServer
 
   def setup
     @client_configuration = MockHelper.create_client_configuration
@@ -12,13 +15,11 @@ class FaradayClientTest < Minitest::Test
                                                                                           verify: false
 
     @custom_connection = MockHelper.create_mock_connection
-    @client_configuration_with_custom_setting = MockHelper
-                                                  .create_client_configuration connection: @custom_connection,
-                                                                               cache: true, verify: false
+    @client_configuration_with_custom_setting = MockHelper.create_client_configuration connection: @custom_connection,
+                                                                                       cache: true, verify: false
   end
 
   def teardown
-    # Do nothing
   end
 
   def test_create_connection
@@ -113,5 +114,59 @@ class FaradayClientTest < Minitest::Test
     assert_equal expected_response.headers, actual_response.headers
     assert_equal expected_response.raw_body, actual_response.raw_body
     assert_equal expected_response.request, actual_response.request
+  end
+
+  def test_execute_get_through_proxy
+    @proxy_server = ProxyServer.new(port: 8881)
+    @proxy_server.start
+
+    LocalServer.start(8081)
+
+    proxy_settings = MockHelper::ProxySettingsStruct.new('http://localhost:8881')
+
+    config = MockHelper.create_client_configuration(
+      proxy_settings: proxy_settings,
+      verify: false
+    )
+
+    request_mock = MockHelper.create_request(
+      http_method: HttpMethod::GET,
+      query_url: 'http://localhost:8081/get',
+      headers: { 'accept' => 'text/plain' }
+    )
+
+    faraday_client = FaradayClient.new(config)
+    response = faraday_client.execute(request_mock)
+
+    assert_equal 200, response.status_code
+    assert_equal 'Get response body.', response.raw_body
+    @proxy_server.stop
+  end
+
+  def test_execute_get_through_proxy_with_auth
+    auth_proxy_server = ProxyServer.new(port: 8882, auth: 'user:pass')
+    auth_proxy_server.start
+
+    LocalServer.start(8082)
+
+    proxy_settings = MockHelper::ProxySettingsStruct.new('http://localhost:8882', 'user', 'pass')
+
+    config = MockHelper.create_client_configuration(
+      proxy_settings: proxy_settings,
+      verify: false
+    )
+
+    request_mock = MockHelper.create_request(
+      http_method: HttpMethod::GET,
+      query_url: 'http://localhost:8082/get',
+      headers: { 'accept' => 'text/plain' }
+    )
+
+    faraday_client = FaradayClient.new(config)
+    response = faraday_client.execute(request_mock)
+
+    assert_equal 200, response.status_code
+    assert_equal 'Get response body.', response.raw_body
+    auth_proxy_server.stop
   end
 end
