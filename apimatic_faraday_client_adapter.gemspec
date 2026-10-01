@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.add_dependency('faraday-retry', '~> 2.0')
   s.add_dependency('faraday-net_http_persistent', '~> 2.0')
   s.add_dependency('certifi', '~> 2018.1', '>= 2018.01.18')
-  s.add_dependency('faraday-http-cache', '~> 2.2')
+  s.add_dependency('faraday-http-cache', '>= 2.2', '< 4.0')
   s.add_development_dependency('minitest', '~> 5.14', '>= 5.14.1')
   s.add_development_dependency('minitest-proveit', '~> 1.0')
   s.add_development_dependency('simplecov', '~> 0.22.0')
